@@ -1,6 +1,7 @@
 import os
 
-from flask import Flask
+from fastapi import FastAPI
+import uvicorn
 
 import logging
 from BoopyStructuredLogFormatter import BoopyStructuredLogFormatter
@@ -13,10 +14,13 @@ handler = logging.StreamHandler()
 handler.setFormatter(formatter)
 logger.addHandler(handler)
 
-app = Flask(__name__)
-@app.route('/')
-def hello_world():
-    val = os.getenv("test_val")
-    logger.error('Hello World!', extra={ 'test': 'value', 'val': val })
-    return f"<p>Hello {val}!</p>"
+app = FastAPI()
 
+@app.get('/test/{id}')
+def test(id: str):
+    val = os.getenv("test_val")
+    logger.error(f"Hello {id}!", extra={ 'test': 'value', 'val': val })
+    return {"message": id}
+
+if __name__ == '__main__':
+    uvicorn.run(app, host='0.0.0.0', port=5000)

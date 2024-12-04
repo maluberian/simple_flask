@@ -6,7 +6,7 @@ info:
 servers:
   - url: 'https://localhost:5000'
 paths:
-  /test/{id}:
+  /v1/test/{id}:
     get:
       description: just a quick test
       responses:
