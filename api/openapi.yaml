@@ -1,0 +1,28 @@
+openapi: 3.0.0
+info:
+  title: Boopy API
+  description: A simple demo service.
+  version: 1.0.0
+servers:
+  - url: 'https://localhost:5000'
+paths:
+  /test/{id}:
+    get:
+      description: just a quick test
+      responses:
+        '200':
+          description: funny response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Response"
+
+components:
+  schemas:
+    Response:
+      required:
+        - message
+      properties:
+        message:
+          type: string
+
