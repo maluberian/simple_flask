@@ -16,13 +16,37 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Response"
+  /v1/test:
+    post:
+      description: post a test by id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - id
+                - message
+              properties:
+                id:
+                  type: number
+                message:
+                  type: string
+      responses:
+        200:
+          description: 'success'
+
 
 components:
   schemas:
     Response:
       required:
+        - id
         - message
       properties:
+        id:
+          type: number
         message:
           type: string
 
